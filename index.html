@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    }
+  
+
+.button:disabled {
+  pointer-events: none;
+}
+
+.button:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+
+    html, body {
+      height: 100%; /* Set height of html and body to 100% */
+    }
+
+    body {
+      background-color: rgb(253, 252, 241);
+    }
+
+    .main {
+      width: 100%;
+      height: 100%;
+      padding: 20px; /* Add padding to the main container if needed */
+    }
+    .button-group {
+       display: flex; /* Use flexbox for layout */
+       justify-content: space-between; /* Add space between buttons */
+       align-items: ri; /* Center items vertically */
+       margin-top:25px;
+       margin-bottom: 60px; /* Add margin at the bottom */
+       border-bottom: 5px solid black; /* Add a border line under the buttons */
+}
+    .ff{
+      font-size:x-large;
+    }
+    .button {
+      appearance: none;
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #3B3B3B;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 20px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 5px 8px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 25%;
+  will-change: transform;
+    }
+
+    .larger-font {
+        font-size: 20px; /* Adjust the font size as needed */
+    }
+
+    .larger-code {
+        font-family: monospace; /* Optional: Use a monospaced font for code */
+        font-size: 18px; /* Adjust the font size as needed */
+    }
+    .larger-font2{
+        font-size: 30px; /* Adjust the font size as needed */
+    }
+    .image-group {
+        display: flex;
+        flex-direction: column;
+        width: 40%; /* Adjust the width as needed */
+        height: auto; /* Adjust the height as needed */
+        margin-bottom: 20px; /* Adjust the margin as needed */
+    }
+
+    .image-group img {
+        width: 45vw; /* Ensures images fill the container */
+        height: auto; /* Maintains aspect ratio */
+    }
+
+
+    .container {
+  position: relative;
+  display: flex;
+  height: 626px; width: 70vw;
+}
+.tabs-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%; /* Adjust as needed */
+      z-index: 1000; /* Ensure it's above other content */
+    }
+.tabs {
+  position: relative;
+  top: 124px;
+  left: 10px;/* here*/
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  height: 464px; width: 66px;
+  user-select: none;
+  
+}
+
+.tabs>input {
+  position: absolute !important;
+  height: 1px !important;
+  width: 1px !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+}
+
+.tab {
+  position: relative;
+  left: 6px;
+  height: 34px; width: 66px;
+  border: none;
+  box-sizing: border-box;
+  font-size: 40px; line-height: 34px;
+  font-family: sans-serif; font-weight: bold;
+  text-align: center;
+  color: #f9f9f7;
+  background-color: #79726c;
+  filter: drop-shadow(-2px 8px 4px #0008);
+  transition: 0.3s ease;
+}
+.tab:nth-of-type(1) { z-index: 6; }
+.tab:nth-of-type(2) { z-index: 5; }
+.tab:nth-of-type(3) { z-index: 4; }
+.tab:nth-of-type(4) { z-index: 3; }
+.tab:nth-of-type(5) { z-index: 2; }
+.tab:nth-of-type(6) { z-index: 1; }
+.tab:nth-of-type(7) { z-index: 0; }
+
+.tab::before,
+.tab::after {
+  content: "";
+  position: absolute;
+  left: 0; z-index: -1;
+  width: 100%;
+  border-radius: 6px 4px 4px 6px;
+  background-color: inherit;
+  background-image: inherit;
+}
+.tab::before {
+  bottom: 16px; height: 126px;
+  transform: skewy(-28deg);
+}
+.tab::after {
+  top: 16px; height: 40px;
+  transform: skewy(28deg);
+}
+
+.tabs > input:not(:checked) + .tab:hover {
+  background-color: #aba5a0;
+  cursor: pointer;
+}
+
+.tabs > input:checked + .tab {
+  left: 0; z-index: 7;
+  background-color: #d8cec1;
+  background-image: url("https://cdn.pixabay.com/photo/2016/11/08/03/16/seamless-1807376_960_720.jpg");
+  color: #393534;
+}
+
+.tab .vertical {
+  position: absolute;
+  left: 10px; top: -85px;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-shadow: 0 0 2px currentcolor;
+}
+.tab .vertical1 {
+  position: absolute;
+  left: 10px; top: -30px;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-shadow: 0 0 2px currentcolor;
+}
+#result{
+margin-left: 90px;
+}
+  </style>
+</head>
+<body>
+  <div class="main">
+    <section class="container">
+      <div class="tabs-container">
+        <div class="tabs">
+          <input type="radio" name="tabs" id="tab0" checked onclick="handleTabClick(0)">
+          <label for="tab0" class="tab"><span class="vertical">Start</span></label>
+          <input type="radio" name="tabs" id="tab1" onclick="handleTabClick(1)"><label for="tab1" class="tab"><span class="vertical1">L_R</span></label>
+          <input type="radio" name="tabs" id="tab2" onclick="handleTabClick(2)"><label for="tab2" class="tab"><span class="vertical1">D_T</span></label>
+          <input type="radio" name="tabs" id="tab3" onclick="handleTabClick(3)"><label for="tab3" class="tab"><span class="vertical1">N_B</span></label>
+          <input type="radio" name="tabs" id="tab4" onclick="handleTabClick(4)"><label for="tab4" class="tab"><span class="vertical1">Compare</span></label>
+        </div>
+      </div>
+      
+      <div class="dcontent">
+        <!-- Content for each tab goes here -->
+        <p id="result"><b>Group ID: 4747</b><br>
+          <b>Student’s names:</b><br>
+          •	ali_299177(Ali Ahmad Alloush, Student ID: 299177)<br>
+          •	ahmad_332223(Ahmad Yossuf Alasaad, Student ID: 332223)<br>
+          •	azdasher_339717(Azdasher Mohammad Zogbe, Student ID: 339717)<br>
+          •	mohsen_305407 (Mohsen Malek Ebrahem, Student ID: 305407)</p>
+      </div>
+    </section>
+  </div>
+  
+  <!-- JavaScript to handle tab clicks -->
+  <script>
+    // Function to handle tab clicks
+    function handleTabClick(tabIndex) {
+      switch (tabIndex) {
+        case 0:
+          clearResult();
+          break;
+        case 1:
+        L_R();
+          break;
+        case 2:
+        D_T();
+          break;
+        case 3:
+        N_B();
+          break;
+        case 4:
+        Compare();
+          break;
+        default:
+          break;
+      }
+    }
+
+    // Add event listeners to tab elements
+    document.addEventListener("DOMContentLoaded", function() {
+      const tabs = document.querySelectorAll('.tab');
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+          handleTabClick(index);
+        });
+      });
+    });
+    function clearResult() {
+      document.getElementById("result").innerHTML = `<b>Group ID: 4747</b><br>
+      <b>Student’s names:</b><br>
+    •	ali_299177(Ali Ahmad Alloush, Student ID: 299177)<br>
+    •	ahmad_332223(Ahmad Yossuf Alasaad, Student ID: 332223)<br>
+    •	azdasher_339717(Azdasher Mohammad Zogbe, Student ID: 339717)<br>
+    •	mohsen_305407 (Mohsen Malek Ebrahem, Student ID: 305407)`;
+    }
+    function L_R() {
+          document.getElementById("result").innerHTML = `<p class="larger-font"><b>Logistic Regression</b></p><br>`;
+ 
+
+// First group of images with an image before it
+var imageContainer1 = document.createElement("div");
+    imageContainer1.setAttribute("class", "image-group");
+
+    // Paragraph before the first group
+    var para1 = document.createElement("p");
+    para1.innerHTML = `<p># Create  Logistic Regression model:</p><br>
+<code>model_Logistic = LogisticRegression(multi_class='ovr',random_state=0,max_iter=1000)</code><br><br>
+
+<p># Train the model on income data:</p><br>
+<code>model_Logistic.fit(X_train, y_train)</code><br><br>
+
+<p># Prediction  on test data:</p><br>
+<code>y_pred=model_Logistic.predict(X_test)</code><br><br>
+<p># Confusion_matrix:</p><br>
+<code>cm = confusion_matrix(y_pred,y_test)</code><br><br>
+<p># Creating a dataframe for a array-formatted Confusion matrix,so it will be easy for plotting:</p><br>
+<code>print('confusion_matrix for LogisticRegression:')<br>
+cm_df = pd.DataFrame(cm,
+                     index = le_type.classes_,
+                     columns = le_type.classes_)
+print(cm_df)</code><br><br>
+
+<p>#An aggregate report showing all evaluation metrics:</p><br>
+<code>print('\ LogisticRegression Classifier metrics:  \n' +classification_report(y_test, y_pred,target_names=le_type.classes_))</code><br><br>`;
+   // para1.classList.add("larger-font"); // Add larger font class
+    document.getElementById("result").appendChild(para1);
+    
+    // Inserting line break
+    document.getElementById("result").appendChild(document.createElement("br")); 
+
+    var image1 = document.createElement("img");
+    image1.src = "LR1.jpg";
+    imageContainer1.appendChild(image1);
+
+    var image2 = document.createElement("img");
+    image2.src = "LR2.jpg";
+    imageContainer1.appendChild(image2);
+
+  // Append the first group to the result element
+  document.getElementById("result").appendChild(imageContainer1);
+
+    }
+
+function D_T() {
+  document.getElementById("result").innerHTML = `<p class="larger-font"><b>Decision Tree Classifier</b></p><br>`;
+ 
+
+// First group of images with an image before it
+var imageContainer1 = document.createElement("div");
+    imageContainer1.setAttribute("class", "image-group");
+
+    // Paragraph before the first group
+    var para1 = document.createElement("p");
+    para1.innerHTML = `<p># Create Decision Tree Classifier model:</p><br>
+<code>model_DecisionTree = DecisionTreeClassifier(random_state=0)</code><br><br>
+<p># Train the model on income data:</p><br>
+<code>model_DecisionTree.fit(X_train, y_train)</code><br><br>
+
+<p># Prediction  on test data:</p><br>
+<code>y_pred=model_DecisionTree.predict(X_test)</code><br><br>
+<p># Confusion_matrix:</p><br>
+<code>cm = confusion_matrix(y_pred,y_test)</code><br><br>
+<p># Creating a dataframe for a array-formatted Confusion matrix,so it will be easy for plotting:</p><br>
+<code>print('confusion_matrix for DecisionTree:')<br>
+cm_df = pd.DataFrame(cm,
+                     index = le_type.classes_,
+                     columns = le_type.classes_)
+print(cm_df)</code><br><br>
+<p>#An aggregate report showing all evaluation metrics:</p>
+<code>print('\ DecisionTree Classifier metrics:  \n' + classification_report(y_test, y_pred,target_names=le_type.classes_))</code><br><br>`;
+   // para1.classList.add("larger-font"); // Add larger font class
+    document.getElementById("result").appendChild(para1);
+    
+    // Inserting line break
+    document.getElementById("result").appendChild(document.createElement("br")); 
+
+    var image1 = document.createElement("img");
+    image1.src = "DT1.jpg";
+    imageContainer1.appendChild(image1);
+
+    var image2 = document.createElement("img");
+    image2.src = "DT2.jpg";
+    imageContainer1.appendChild(image2);
+  // Append the first group to the result element
+  document.getElementById("result").appendChild(imageContainer1);
+
+}
+function N_B() {
+  document.getElementById("result").innerHTML = `<p class="larger-font"><b>Naive Byess Classifier</b></p><br>`;
+ 
+
+// First group of images with an image before it
+var imageContainer1 = document.createElement("div");
+    imageContainer1.setAttribute("class", "image-group");
+
+    // Paragraph before the first group
+    var para1 = document.createElement("p");
+    para1.innerHTML = `<p># #create GaussianNB model:</p><br>
+<code>model_NB = GaussianNB()</code><br><br>
+<p># Train the model on income data:</p><br>
+<code>model_NB.fit(X_train, y_train)</code><br><br>
+
+<p># Prediction  on test data:</p><br>
+<code>y_pred=model_NB.predict(X_test)</code><br><br>
+<p># Confusion_matrix:</p><br>
+<code>cm = confusion_matrix(y_pred,y_test)</code><br><br>
+<p># Creating a dataframe for a array-formatted Confusion matrix,so it will be easy for plotting:</p><br>
+<code>print('confusion_matrix for Nive Byess:')<br>
+  cm_df = pd.DataFrame(cm,
+                     index = le_type.classes_,
+                     columns = le_type.classes_)
+print(cm_df)</code><br><br>
+<p>#An aggregate report showing all evaluation metrics:</p>
+<code>print('\ Nive Byess Classifier metrics:  \n' + classification_report(y_test, y_pred,target_names=le_type.classes_))</code><br><br>`;
+   // para1.classList.add("larger-font"); // Add larger font class
+    document.getElementById("result").appendChild(para1);
+    
+    // Inserting line break
+    document.getElementById("result").appendChild(document.createElement("br")); 
+
+    var image1 = document.createElement("img");
+    image1.src = "NB1.jpg";
+    imageContainer1.appendChild(image1);
+
+    var image2 = document.createElement("img");
+    image2.src = "NB2.jpg";
+    imageContainer1.appendChild(image2);
+  // Append the first group to the result element
+  document.getElementById("result").appendChild(imageContainer1);
+
+}
+function Compare() {
+document.getElementById("result").innerHTML = `<p class="larger-font">:يمكن أن نأخذ السطر الأخير من كل خرج ونقارن بين خوارزميات التصنيف المستخدمة كما يلي </p><br>
+<br><table style="border-collapse: collapse; width: 50%;">
+  <tr>
+    <th style="text-align: center; padding: 8px; border: 1px solid #dddddd;">Model</th>
+    <th style="text-align: center; padding: 8px; border: 1px solid #dddddd;">precision</th>
+    <th style="text-align: center; padding: 8px; border: 1px solid #dddddd;">recall</th>
+    <th style="text-align: center; padding: 8px; border: 1px solid #dddddd;">f1-score</th>
+    <th style="text-align: center; padding: 8px; border: 1px solid #dddddd;">accuracy</th>
+    <th style="text-align: center; padding: 8px; border: 1px solid #dddddd;">Evaluation</th>
+  </tr>
+  <tr>
+    <td style="text-align: center; padding: 8px; border: 1px solid #dddddd;">Logistic Regression</td>
+    <td style="text-align: center; padding: 8px; border: 1px solid #dddddd;">35%</td>
+    <td style="text-align: center; padding: 8px; border: 1px solid #dddddd;">34%</td>
+    <td style="text-align: center; padding: 8px; border: 1px solid #dddddd;">33%</td>
+    <td style="text-align: center; padding: 8px; border: 1px solid #dddddd;">34%</td>
+    <td style="text-align: center; padding: 8px; border: 1px solid #dddddd;">Bad</td>
+  </tr>
+  <tr>
+    <td style="text-align: center; padding: 8px; border: 1px solid #dddddd;">Decision Tree</td>
+    <td style="text-align: center; padding: 8px; border: 1px solid #dddddd;">97%</td>
+    <td style="text-align: center; padding: 8px; border: 1px solid #dddddd;">97%</td>
+    <td style="text-align: center; padding: 8px; border: 1px solid #dddddd;">97%</td>
+    <td style="text-align: center; padding: 8px; border: 1px solid #dddddd;">97%</td>
+    <td style="text-align: center; padding: 8px; border: 1px solid #dddddd;">Excellent</td>
+  </tr>
+  <tr>
+    <td style="text-align: center; padding: 8px; border: 1px solid #dddddd;">Naive Byess</td>
+    <td style="text-align: center; padding: 8px; border: 1px solid #dddddd;">28%</td>
+    <td style="text-align: center; padding: 8px; border: 1px solid #dddddd;">26%</td>
+    <td style="text-align: center; padding: 8px; border: 1px solid #dddddd;">20%</td>
+    <td style="text-align: center; padding: 8px; border: 1px solid #dddddd;">26%</td>
+    <td style="text-align: center; padding: 8px; border: 1px solid #dddddd;">The worst</td>
+  </tr>
+  
+</table><br>
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`;
+
+document.getElementById("result").appendChild(document.createElement("br"));
+
+
+    
+var para1 = document.createElement("p");
+    para1.innerHTML = `:يمكن استخدام طريقة التقويم المتقاطع لتقييم مجموعة نماذج التعلم، والتي نمرر لها مجموعة من نماذج التعلم والبيانات كلها، تعيد هذه الدالة إطار بيانات يظهر مقياس الصحة لكل نموذج مما يسمح بالمقارنة بينهم`;
+    para1.classList.add("larger-font"); // Add larger font class
+    document.getElementById("result").appendChild(para1);
+    document.getElementById("result").appendChild(document.createElement("br"));
+
+    // Code 1
+    var code1 = document.createElement("code");
+    code1.innerHTML = `def cv_comparison_classification(models, X, y, cv):<br>
+      cv_df = pd.DataFrame()<br>
+      for model in models:<br>
+        acc = cross_val_score(model, X, y, scoring='accuracy', cv=cv)<br>
+        acc_avg = round(acc.mean(), 3)<br>
+        cv_df[str(model)] = [acc_avg]<br>
+        cv_df.index = ['Accuracy']<br>
+      return cv_df<br><br>
+      models = [model_DecisionTree,model_Logistic,model_NB]<br>
+      comp_df = cv_comparison_classification(models, X_test, y_test, 5)<br>
+      print(comp_df)<br><br>`;
+    document.getElementById("result").appendChild(code1);
+    document.getElementById("result").appendChild(document.createElement("br"));
+
+    // Image 1
+    var imageContainer1 = document.createElement("div");
+    var image1 = document.createElement("img");
+    image1.src = "ACC.jpg";
+    imageContainer1.appendChild(image1);
+    document.getElementById("result").appendChild(imageContainer1);
+    document.getElementById("result").appendChild(document.createElement("br"));
+
+    // Paragraph 2
+    var para2 = document.createElement("p");
+    para2.innerHTML =`لاحظ أن مصنف شجرة القرار هو أفضل المصنفات في هذه المسألة لأن مقياس الدقة هو الأعلى`;
+    para2.classList.add("larger-font"); // Add larger font class
+    document.getElementById("result").appendChild(para2);
+    document.getElementById("result").appendChild(document.createElement("br"));
+
+    var para5 = document.createElement("p");
+    para5.innerHTML = `---------------------------------------------------------------------------------------------------------------------------------------------------------------------------`;
+    para5.classList.add("larger-font"); // Add larger font class
+    document.getElementById("result").appendChild(para5);
+
+    var para3 = document.createElement("p");
+    para3.innerHTML = ` :يمكن تحسين خوارزمية مصنف نايف بايس الرقمي واستبداله بمصنف نايف بايس الفئوي وتطبيقه فقط على القيم الفئوية بعد الغاء التقييس كما يلي`;
+    para3.classList.add("larger-font");
+    document.getElementById("result").appendChild(para3);
+    document.getElementById("result").appendChild(document.createElement("br"));
+
+    // Add image2
+    var imageContainer2 = document.createElement("div");
+    var image2 = document.createElement("img");
+    image2.src = "NBC.jpg";
+    imageContainer2.appendChild(image2);
+    document.getElementById("result").appendChild(imageContainer2);
+    document.getElementById("result").appendChild(document.createElement("br"));
+
+    // Add image3
+    var imageContainer3 = document.createElement("div");
+    var image3 = document.createElement("img");
+    image3.src = "NBR.jpg";
+    imageContainer3.appendChild(image3);
+    document.getElementById("result").appendChild(imageContainer3);
+    document.getElementById("result").appendChild(document.createElement("br"));
+
+
+}
+  </script> 
+</body>
+</html>
